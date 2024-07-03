@@ -35,3 +35,45 @@ console.log(getNumber('а я томат'));
 console.log(getNumber(true));
 console.log(getNumber(1.5));
 console.log(getNumber(-1));
+
+
+// Task 5.16. Функции возвращаются
+
+function isWorkTime(startWorkTime, endWorkTime, startMeetingTime, meetingMunutes) {
+    if(typeof startWorkTime !== 'string' || typeof endWorkTime !== 'string' || typeof startMeetingTime !== 'string') return 'Введите корректные данные';
+
+    if(!startWorkTime.includes(':') || !endWorkTime.includes(':') || !startMeetingTime.includes(':')) {
+        return 'Вы задали неверный формат времени. Используйте : (двоеточие)'
+    }
+
+    if(typeof meetingMunutes !== 'number' && isNaN(meetingMunutes)) return 'Введите время встречи в минутах';
+
+    startWorkTime = startWorkTime.split(':');
+    endWorkTime = endWorkTime.split(':');
+    startMeetingTime = startMeetingTime.split(':');
+
+    if((startWorkTime.length > 2 || startWorkTime[0].length > 2 || startWorkTime[1].length > 2) 
+        || (endWorkTime.length > 2 || endWorkTime[0].length > 2 || endWorkTime[1].length > 2) 
+        || (startMeetingTime.length > 2 || startMeetingTime[0].length > 2 || startMeetingTime[1].length > 2)) return 'Введите корректное время';
+
+    if(Number(startMeetingTime[0]) < Number(startWorkTime[0])) return false;
+
+    const fullWorkTimeInMinutes = (endWorkTime[0] - startWorkTime[0]) * 60 + (endWorkTime[1] - startWorkTime[1]);
+    if(meetingMunutes > fullWorkTimeInMinutes) return false;
+
+    const meetingHour = [parseInt(meetingMunutes / 60), meetingMunutes % 60];
+    const endMeetingTime = [Number(startMeetingTime[0]) + Number(meetingHour[0]), Number(startMeetingTime[1]) + Number(meetingHour[1])];
+
+    if(Number(endMeetingTime[0]) > Number(endWorkTime[0])) {
+        return false
+    } else if(Number(endMeetingTime[0]) < Number(endWorkTime[0])) {
+        return true;
+    } else if(Number(endMeetingTime[0]) === Number(endWorkTime[0]) && Number(endMeetingTime[1]) <= Number(endWorkTime[1])) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+console.log(isWorkTime('8:45', '18:30', '14:00', 271));
