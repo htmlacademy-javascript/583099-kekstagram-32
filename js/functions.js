@@ -1,31 +1,29 @@
 function checkWordLength(string, value = 1) {
-  if (typeof string != "string") return "Введите строку";
   return string.length <= value;
 }
 
-console.log(checkWordLength("проверяемая строка", 20));
+console.log(checkWordLength('проверяемая строка', 20));
 
 function isPalindrome(string) {
-  const changedString = string.toString().toLowerCase().replaceAll(" ", "");
-  return changedString === changedString.split("").reverse().join("");
+  const changedString = string.toLowerCase().replaceAll(' ', '');
+  return changedString === changedString.split('').reverse().join('');
 }
 
-console.log(isPalindrome("Лёша на полке клопа нашёл "));
+console.log(isPalindrome('Лёша на полке клопа нашёл '));
 
 function getNumber(param) {
-  if (typeof param != "number" && typeof param != "string")
-    return "Введите строку или число";
-  if (typeof param === "number")
+  if (typeof param === 'number') {
     return Number.isInteger(param)
       ? Math.abs(param)
       : parseInt(Math.abs(param * 10));
+  }
 
-  let number = "";
+  let number = '';
 
   for (let i = 0; i < param.length; i++) {
     if (
-      param[i] != " " &&
-      typeof Number(param[i]) === "number" &&
+      param[i] !== ' ' &&
+      typeof Number(param[i]) === 'number' &&
       !isNaN(Number(param[i]))
     ) {
       number += param[i];
@@ -35,11 +33,11 @@ function getNumber(param) {
   return parseInt(number);
 }
 
-console.log(getNumber("2023 год"));
-console.log(getNumber("ECMAScript 2022"));
-console.log(getNumber("1 кефир, 0.5 батона"));
-console.log(getNumber("агент 007"));
-console.log(getNumber("а я томат"));
+console.log(getNumber('2023 год'));
+console.log(getNumber('ECMAScript 2022'));
+console.log(getNumber('1 кефир, 0.5 батона'));
+console.log(getNumber('агент 007'));
+console.log(getNumber('а я томат'));
 console.log(getNumber(true));
 console.log(getNumber(1.5));
 console.log(getNumber(-1));
@@ -52,19 +50,22 @@ function isWorkTime(
   startMeetingTime,
   meetingMunutes
 ) {
-  const startWorkTimeArray = startWorkTime.split(":");
-  const endWorkTimeArray = endWorkTime.split(":");
-  const startMeetingTimeArray = startMeetingTime.split(":");
+  const startWorkTimeArray = startWorkTime.split(':');
+  const endWorkTimeArray = endWorkTime.split(':');
+  const startMeetingTimeArray = startMeetingTime.split(':');
 
-  if (Number(startMeetingTimeArray[0]) < Number(startWorkTimeArray[0]))
+  if (Number(startMeetingTimeArray[0]) < Number(startWorkTimeArray[0])) {
     return false;
+  }
 
   const MINUTES_IN_HOUR = 60;
 
   const fullWorkTimeInMinutes =
     (endWorkTimeArray[0] - startWorkTimeArray[0]) * MINUTES_IN_HOUR +
     (endWorkTimeArray[1] - startWorkTimeArray[1]);
-  if (meetingMunutes > fullWorkTimeInMinutes) return false;
+  if (meetingMunutes > fullWorkTimeInMinutes) {
+    return false;
+  }
 
   const meetingHour = [
     parseInt(meetingMunutes / MINUTES_IN_HOUR, 10),
@@ -89,4 +90,4 @@ function isWorkTime(
   }
 }
 
-// console.log(isWorkTime("8:45", "18:30", "14:00", 288));
+console.log(isWorkTime('8:45', '18:30', '14:00', 288));
