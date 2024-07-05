@@ -2,20 +2,20 @@ function checkWordLength(string, value = 1) {
   return string.length <= value;
 }
 
-console.log(checkWordLength('проверяемая строка', 20));
+// console.log(checkWordLength('проверяемая строка', 20));
 
 function isPalindrome(string) {
   const changedString = string.toLowerCase().replaceAll(' ', '');
   return changedString === changedString.split('').reverse().join('');
 }
 
-console.log(isPalindrome('Лёша на полке клопа нашёл '));
+// console.log(isPalindrome('Лёша на полке клопа нашёл '));
 
 function getNumber(param) {
   if (typeof param === 'number') {
     return Number.isInteger(param)
       ? Math.abs(param)
-      : parseInt(Math.abs(param * 10));
+      : parseInt(Math.abs(param * 10), 10);
   }
 
   let number = '';
@@ -30,17 +30,17 @@ function getNumber(param) {
     }
   }
 
-  return parseInt(number);
+  return parseInt(number, 10);
 }
 
-console.log(getNumber('2023 год'));
-console.log(getNumber('ECMAScript 2022'));
-console.log(getNumber('1 кефир, 0.5 батона'));
-console.log(getNumber('агент 007'));
-console.log(getNumber('а я томат'));
-console.log(getNumber(true));
-console.log(getNumber(1.5));
-console.log(getNumber(-1));
+// console.log(getNumber('2023 год'));
+// console.log(getNumber('ECMAScript 2022'));
+// console.log(getNumber('1 кефир, 0.5 батона'));
+// console.log(getNumber('агент 007'));
+// console.log(getNumber('а я томат'));
+// console.log(getNumber(true));
+// console.log(getNumber(1.5));
+// console.log(getNumber(-1));
 
 // Task 5.16. Функции возвращаются
 
@@ -90,4 +90,4 @@ function isWorkTime(
   }
 }
 
-console.log(isWorkTime('8:45', '18:30', '14:00', 288));
+// console.log(isWorkTime('8:45', '18:30', '14:00', 288));
