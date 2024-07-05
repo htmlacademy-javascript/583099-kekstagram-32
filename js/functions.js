@@ -1,30 +1,28 @@
 function checkWordLength(string, value = 1) {
-    if(typeof string != 'string') return 'Введите строку';
-    return string.length <= value;
+  return string.length <= value;
 }
 
 console.log(checkWordLength('проверяемая строка', 20));
 
 function isPalindrome(string) {
-    const changedString = string.toString().toLowerCase().replaceAll(' ', '');
-    return changedString === changedString.split('').reverse().join('');
+	const changedString = string.toLowerCase().replaceAll(' ', '');
+	return changedString === changedString.split('').reverse().join('');
 }
 
 console.log(isPalindrome('Лёша на полке клопа нашёл '));
 
 function getNumber(param) {
-    if(typeof param != 'number' && typeof param != 'string') return 'Введите строку или число';
-    if(typeof param === 'number') return Number.isInteger(param) ? Math.abs(param) : parseInt(Math.abs(param * 10));
+	if (typeof param === 'number') return Number.isInteger(param) ? Math.abs(param) : parseInt(Math.abs(param * 10));
 
-    let number = '';
+	let number = '';
 
-    for(let i = 0; i < param.length; i++) {
-        if(param[i] != ' ' && typeof Number(param[i]) === 'number' && !isNaN(Number(param[i]))) {
-            number += param[i];
-        }
-    }
+	for(let i = 0; i < param.length; i++) {
+			if(param[i] !== ' ' && typeof Number(param[i]) === 'number' && !isNaN(Number(param[i]))) {
+				number += param[i];
+			}
+	}
 
-    return parseInt(number);
+	return parseInt(number);
 }
 
 console.log(getNumber('2023 год'));
